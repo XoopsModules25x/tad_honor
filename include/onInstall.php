@@ -1,28 +1,20 @@
 <?php
 
+use XoopsModules\Tadtools\Utility;
+
+if (!class_exists('XoopsModules\Tadtools\Utility')) {
+    require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
+}
+/**
+ * @param $module
+ * @return bool
+ */
 function xoops_module_install_tad_honor(&$module)
 {
-
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_honor");
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_honor/file");
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_honor/image");
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_honor/image/.thumbs");
+    Utility::mk_dir(XOOPS_ROOT_PATH . '/uploads/tad_honor');
+    Utility::mk_dir(XOOPS_ROOT_PATH . '/uploads/tad_honor/file');
+    Utility::mk_dir(XOOPS_ROOT_PATH . '/uploads/tad_honor/image');
+    Utility::mk_dir(XOOPS_ROOT_PATH . '/uploads/tad_honor/image/.thumbs');
 
     return true;
-}
-
-//建立目錄
-function mk_dir($dir = "")
-{
-    //若無目錄名稱秀出警告訊息
-    if (empty($dir)) {
-        return;
-    }
-
-    //若目錄不存在的話建立目錄
-    if (!is_dir($dir)) {
-        umask(000);
-        //若建立失敗秀出警告訊息
-        mkdir($dir, 0777);
-    }
 }
